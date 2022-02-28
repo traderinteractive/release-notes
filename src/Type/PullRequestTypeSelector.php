@@ -41,7 +41,7 @@ final class PullRequestTypeSelector
         }
 
         if ($this->_typeSelector) {
-            return $this->_typeSelector($change);
+            return call_user_func($this->_typeSelector, $change);
         }
 
         return $change->getType();
