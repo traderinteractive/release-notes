@@ -153,6 +153,10 @@ class GithubClient
             $release['prerelease']
         );
 
+        if (empty($result['html_url'])) {
+            var_dump($result);
+        }
+
         return $result['html_url'];
     }
 }
