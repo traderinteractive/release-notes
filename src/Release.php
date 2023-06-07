@@ -63,7 +63,7 @@ class Release
      */
     public function previewFormat()
     {
-        return implode([$this->_actionDescription(), $this->_releaseName(), $this->notes], "\n\n");
+        return implode("\n\n", [$this->_actionDescription(), $this->_releaseName(), $this->notes]);
     }
 
     /**
