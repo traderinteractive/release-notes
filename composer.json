@@ -16,17 +16,19 @@
     ],
     "license": "MIT",
     "config": {
-        "platform": {
-            "php": "7.0"
-        },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "require": {
-        "php": "~7.0",
+        "php": "^7.4 || ^8.0",
         "clue/graph": "~0.9.0",
-        "flexyproject/githubapi": "~1.0",
         "gregwar/cache": "~1.0",
+        "guzzlehttp/guzzle": "^7.0.1",
         "herrera-io/version": "~1.1",
+        "http-interop/http-factory-guzzle": "^1.0",
+        "knplabs/github-api": "^3.0",
         "lesstif/php-jira-rest-client": "^1.7.0",
         "nubs/random-name-generator": "~0.1.0",
         "nubs/sensible": "~0.5.0",
