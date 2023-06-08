@@ -8,13 +8,13 @@
          stopOnFailure="false"
          bootstrap="tests/bootstrap.php">
     <testsuites>
-        <testsuite>
+        <testsuite name="all">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="false">
+    <coverage>
+        <include>
             <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
+        </include>
+    </coverage>
 </phpunit>

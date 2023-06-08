@@ -24,7 +24,7 @@ class ChangeFactoryTest extends TestCase
         $this->assertEquals($expectedChange, $actualChange);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $commitJson = file_get_contents('tests/data/commit.json');
         $this->_commit = json_decode($commitJson, true);

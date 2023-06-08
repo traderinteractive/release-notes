@@ -18,7 +18,7 @@ class ApplicationTest extends TestCase
             $this->getCommandTester();
         } catch (\Exception $ex) {
             $output = $ex->getMessage();
-            $this->assertContains('Not enough arguments (missing: "repo-owner, repo-name")', $output);
+            $this->assertStringContainsString('Not enough arguments (missing: "repo-owner, repo-name")', $output);
         }
     }
 
@@ -34,7 +34,7 @@ class ApplicationTest extends TestCase
             );
         } catch (\Exception $ex) {
             $output = $ex->getMessage();
-            $this->assertContains('Bad credentials', $output);
+            $this->assertStringContainsString('Bad credentials', $output);
         }
     }
 
@@ -56,7 +56,7 @@ class ApplicationTest extends TestCase
         return $commandTester;
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->_application = new Application();
