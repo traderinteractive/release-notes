@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Type;
 
 final class TypeManager
@@ -117,7 +118,7 @@ final class TypeManager
      *
      * @return array
      */
-    public function getTypesForCommand() : array
+    public function getTypesForCommand(): array
     {
         $data = [];
         foreach ($this->_types as $type) {

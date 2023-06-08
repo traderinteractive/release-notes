@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Tests;
 
 use Guywithnose\ReleaseNotes\SemanticVersion;

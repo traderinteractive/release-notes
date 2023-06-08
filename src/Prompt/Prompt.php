@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Prompt;
 
 use Symfony\Component\Console\Helper\FormatterHelper;
@@ -62,8 +63,7 @@ class Prompt
         array $choices = [],
         $preamble = '',
         $choicesOnly = true
-    )
-    {
+    ) {
         $this->_input = $input;
         $this->_output = $output;
         $this->_questionHelper = $questionHelper;
@@ -90,7 +90,8 @@ class Prompt
     /**
      * Gets the question object that is to be asked.
      *
-     * The question will either be a ChoiceQuestion, ConfirmationQuestion, or regular Question based on the configuration.
+     * The question will either be a ChoiceQuestion, ConfirmationQuestion,
+     * or regular Question based on the configuration.
      *
      * @return \Symfony\Component\Console\Question\Question The question to be asked.
      */
@@ -113,8 +114,10 @@ class Prompt
     /**
      * Check if this question is a select prompt.
      *
-     * When there are choices given (rather than freeform input or boolean), they can either be given via autocomplete suggestions (in case the
-     * choices are only loose choices) or via a select element (for when the choices are the only allowed responses).
+     * When there are choices given (rather than freeform input or boolean),
+     * they can either be given via autocomplete suggestions (in case the
+     * choices are only loose choices) or via a select element
+     * (for when the choices are the only allowed responses).
      *
      * @return bool True if this should be a select prompt, false if not.
      */
@@ -166,9 +169,11 @@ class Prompt
     /**
      * Formats the default value for display.
      *
-     * Select questions are special in that they need both key and value and the default should mention them both to be helpful.
+     * Select questions are special in that they need both key and value
+     * and the default should mention them both to be helpful.
      *
-     * Confirmation questions are special in that the boolean value needs to be converted to a "yes" or "no" string.
+     * Confirmation questions are special in that the boolean value needs
+     * to be converted to a "yes" or "no" string.
      *
      * @return string The formatted default value.
      */

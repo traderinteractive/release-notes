@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes;
 
 use Herrera\Version\Parser as VersionParser;

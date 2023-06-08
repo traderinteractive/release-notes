@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes;
 
 final class SemanticVersionFactory implements VersionFactoryInterface
@@ -10,7 +11,7 @@ final class SemanticVersionFactory implements VersionFactoryInterface
      *
      * @return VersionInterface new version object
      */
-    public function createVersion($version = null) : VersionInterface
+    public function createVersion($version = null): VersionInterface
     {
         return new SemanticVersion($version);
     }

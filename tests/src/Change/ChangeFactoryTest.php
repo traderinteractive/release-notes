@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Tests\Change;
 
 use Guywithnose\ReleaseNotes\Change\Change;

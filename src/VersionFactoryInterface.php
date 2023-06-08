@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes;
 
 interface VersionFactoryInterface
@@ -10,5 +11,5 @@ interface VersionFactoryInterface
      *
      * @return VersionInterface new version object
      */
-    public function createVersion($version = null) : VersionInterface;
+    public function createVersion($version = null): VersionInterface;
 }

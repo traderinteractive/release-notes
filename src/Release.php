@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes;
 
 use Guywithnose\ReleaseNotes\Change\ChangeList;
@@ -45,8 +46,7 @@ class Release
         $notes,
         $targetCommitish,
         $isDraft
-    )
-    {
+    ) {
         $this->changes = $changes;
         $this->currentVersion = $currentVersion;
         $this->version = $version;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Type;
 
 final class Type
@@ -44,7 +45,7 @@ final class Type
      *
      * @return string A short representation of the type.
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->_name;
     }
@@ -54,7 +55,7 @@ final class Type
      *
      * @return string A code representation of the type.
      */
-    public function getCode() : string
+    public function getCode(): string
     {
         return $this->_code;
     }
@@ -64,7 +65,7 @@ final class Type
      *
      * @return string A longer representation of the type.
      */
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return $this->_description;
     }
@@ -74,7 +75,7 @@ final class Type
      *
      * @return int A weight value for sorting.
      */
-    public function getWeight() : int
+    public function getWeight(): int
     {
         return $this->_weight;
     }
@@ -87,7 +88,7 @@ final class Type
      *
      * @return int value indicating less than, equal to, or greater than
      */
-    public static function cmp(Type $a, Type $b) : int
+    public static function cmp(Type $a, Type $b): int
     {
         $weightCmp = $a->getWeight() <=> $b->getWeight();
         if ($weightCmp === 0) {
@@ -105,7 +106,7 @@ final class Type
      *
      * @return int value indicating less than, equal to, or greater than
      */
-    public static function rcmp(Type $a, Type $b) : int
+    public static function rcmp(Type $a, Type $b): int
     {
         return self::cmp($a, $b) * -1;
     }

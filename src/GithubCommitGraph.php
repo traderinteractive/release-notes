@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes;
 
 use Fhaculty\Graph\Graph;
@@ -25,7 +26,7 @@ class GithubCommitGraph
      *
      * @return array The commits along the left-most line of the commit graph.
      */
-    public function firstParents(int $depth = 1) : array
+    public function firstParents(int $depth = 1): array
     {
         $current = $this->_baseCommitNode();
 
@@ -40,7 +41,7 @@ class GithubCommitGraph
      *
      * @return array The commits along the left-most line of the commit graph.
      */
-    public function getCommitsToDepth($baseCommitNode, int $depth) : array
+    public function getCommitsToDepth($baseCommitNode, int $depth): array
     {
         if ($depth === 0) {
             return [];
@@ -97,7 +98,7 @@ class GithubCommitGraph
      */
     private function _baseCommitNode()
     {
-        $noChildren = function($vertex) {
+        $noChildren = function ($vertex) {
             return $vertex->getEdgesIn()->isEmpty();
         };
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes;
 
 use Gregwar\Cache\Cache;
@@ -97,7 +98,13 @@ class BuildRelease extends Command
             null,
             InputOption::VALUE_NONE,
             'Only include Pull Requests in the change list.'
-        )->addOption('cache-dir', null, InputOption::VALUE_REQUIRED, 'The access token cache location', dirname(__DIR__))->addOption(
+        )->addOption(
+            'cache-dir',
+            null,
+            InputOption::VALUE_REQUIRED,
+            'The access token cache location',
+            dirname(__DIR__)
+        )->addOption(
             'token-file',
             null,
             InputOption::VALUE_REQUIRED,
@@ -127,7 +134,12 @@ class BuildRelease extends Command
             $this->versionFactory = new CalendarVersionFactory();
         }
 
-        $promptFactory = new PromptFactory($input, $output, $this->getHelperSet()->get('question'), $this->getHelperSet()->get('formatter'));
+        $promptFactory = new PromptFactory(
+            $input,
+            $output,
+            $this->getHelperSet()->get('question'),
+            $this->getHelperSet()->get('formatter')
+        );
 
         $client = GithubClient::createWithToken(
             $this->_getToken($input, $promptFactory),
@@ -157,7 +169,12 @@ class BuildRelease extends Command
 
             $done = false;
             while (!$done) {
-                $choice = $promptFactory->invoke('What would you like to do?', $defaultChoice, $choices, $release->previewFormat());
+                $choice = $promptFactory->invoke(
+                    'What would you like to do?',
+                    $defaultChoice,
+                    $choices,
+                    $release->previewFormat()
+                );
                 $result = $this->_handleUserInput($release, $promptFactory, $client, $input, $output, $choice);
                 if ($result === true) {
                     $done = true;
@@ -189,8 +206,7 @@ class BuildRelease extends Command
         InputInterface $input,
         OutputInterface $output,
         string $choice
-    )
-    {
+    ) {
         $typeManager = $this->typeManager;
         $targetBranch = $baseTagName = null;
         switch ($choice) {
@@ -205,7 +221,7 @@ class BuildRelease extends Command
                 return $this->_buildRelease($input, $output, $client, $targetBranch, $baseTagName);
                 break;
             case 'c':
-                $selectTypeForChange = function(Change $change) use($promptFactory, $typeManager) {
+                $selectTypeForChange = function (Change $change) use ($promptFactory, $typeManager) {
                     $choice = $promptFactory->invoke(
                         'What type of change is this PR?',
                         $change->getType()->getCode(),
@@ -229,7 +245,13 @@ class BuildRelease extends Command
                 $currentVersion = $release->currentVersion;
                 $defaultVersion = $release->version;
                 $release->version = $this->versionFactory->createVersion(
-                    $promptFactory->invoke("Version Number (current: {$currentVersion})", $defaultVersion, $suggestedVersions, null, false)
+                    $promptFactory->invoke(
+                        "Version Number (current: {$currentVersion})",
+                        $defaultVersion,
+                        $suggestedVersions,
+                        null,
+                        false
+                    )
                 );
                 break;
             case 'n':
@@ -267,8 +289,13 @@ class BuildRelease extends Command
      *
      * @throws \Exception if tag already exists
      */
-    private function _buildRelease(InputInterface $input, OutputInterface $output, GithubClient $client, $targetBranch, $baseTagName)
-    {
+    private function _buildRelease(
+        InputInterface $input,
+        OutputInterface $output,
+        GithubClient $client,
+        $targetBranch,
+        $baseTagName
+    ) {
         $currentVersion = $this->versionFactory->createVersion($baseTagName);
 
         $typeSelector = null;
@@ -294,7 +321,15 @@ class BuildRelease extends Command
         $releaseName = $this->_getReleaseName($input);
         $isDraft = !$input->getOption('publish');
 
-        return new Release($changes, $currentVersion, $newVersion, $releaseName, $releaseNotes, $targetBranch, $isDraft);
+        return new Release(
+            $changes,
+            $currentVersion,
+            $newVersion,
+            $releaseName,
+            $releaseNotes,
+            $targetBranch,
+            $isDraft
+        );
     }
 
     private function _getChangesInRange(
@@ -303,8 +338,7 @@ class BuildRelease extends Command
         $startCommitish,
         $endCommitish,
         callable $changePrompter = null
-    )
-    {
+    ) {
         $commitDepth = 1;
         $argument = (int)$input->getOption('commit-depth');
         if ($argument >= 1) {
@@ -313,7 +347,10 @@ class BuildRelease extends Command
 
         $commitGraph = new GithubCommitGraph($client->getCommitsInRange($startCommitish, $endCommitish));
         $leadingCommits = $commitGraph->firstParents($commitDepth);
-        $changeListFactory = new ChangeListFactory(new ChangeFactory($this->typeManager, $changePrompter), $this->typeManager);
+        $changeListFactory = new ChangeListFactory(
+            new ChangeFactory($this->typeManager, $changePrompter),
+            $this->typeManager
+        );
 
         return $changeListFactory->createFromCommits($leadingCommits);
     }
@@ -334,7 +371,13 @@ class BuildRelease extends Command
 
         $cache = new Cache($input->getOption('cache-dir'));
 
-        return trim($cache->getOrCreate($input->getOption('token-file'), [], $promptFactory->create('Please enter a github access token')));
+        return trim(
+            $cache->getOrCreate(
+                $input->getOption('token-file'),
+                [],
+                $promptFactory->create('Please enter a github access token')
+            )
+        );
     }
 
     /**
@@ -457,8 +500,7 @@ class BuildRelease extends Command
         PromptFactory $promptFactory,
         GithubClient $client,
         Release $release
-    )
-    {
+    ) {
         $defaultResponse = !$input->getOption('dry-run');
         $output->writeln($release->previewFormat());
         if ($promptFactory->invoke('Are you sure?', $defaultResponse)) {

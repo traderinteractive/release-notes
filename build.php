@@ -8,9 +8,7 @@ if ($returnStatus !== 0) {
     exit(1);
 }
 
-$phpcs = './vendor/bin/phpcs --standard=' . __DIR__ . '/vendor/traderinteractive/coding-standard/DWS -n';
-$phpcs .= ' src tests *.php';
-passthru($phpcs, $returnStatus);
+passthru('./vendor/bin/phpcs -n', $returnStatus);
 if ($returnStatus !== 0) {
     exit(1);
 }

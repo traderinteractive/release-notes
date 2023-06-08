@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Type;
 
 use Guywithnose\ReleaseNotes\Change\Change;
@@ -34,7 +35,7 @@ final class PullRequestTypeSelector
      *
      * @return Type type of commit or default if unable to determine
      */
-    public function getChangeType(ChangeInterface $change) : Type
+    public function getChangeType(ChangeInterface $change): Type
     {
         if (!$change instanceof PullRequest) {
             return $this->_typeManager->getTypeByCode(Change::TYPE_IGNORE);

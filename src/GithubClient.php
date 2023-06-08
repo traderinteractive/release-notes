@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes;
 
 use Github\AuthMethod;
@@ -37,7 +38,8 @@ class GithubClient
      * @param string $token The API token to authenticate with.
      * @param string $owner The owner name of the github repository.
      * @param string $repo The name of the github repository.
-     * @param string $apiUrl The base url to the github API if different from the main github site (i.e., GitHub Enterprise).
+     * @param string $apiUrl The base url to the github API if different from the main github site
+     *                       (i.e., GitHub Enterprise).
      * @return self The github client wrapper, authenticated against the API.
      * @throws \Exception if the token is invalid
      */
@@ -86,7 +88,7 @@ class GithubClient
      *
      * @return bool True if the tag exists
      */
-    public function tagExists(string $tagName) : bool
+    public function tagExists(string $tagName): bool
     {
         $tags = $this->client->api('repo')->tags($this->owner, $this->repo);
 
@@ -102,8 +104,9 @@ class GithubClient
     /**
      * Fetch the commits from github between the two commits/tags/branches/etc.
      *
-     * @param string|null $startCommitish The beginning commit - excluded from results.  If this is null, all ancestors of $endCommitish will be
-     *     returned.
+     * @param string|null $startCommitish The beginning commit - excluded from results.
+     *                                    If this is null, all ancestors of $endCommitish will be
+     *                                    returned.
      * @param string $endCommitish The end commit - included in results.
      * @return array The list of changes in the commit range.
      */

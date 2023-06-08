@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Change;
 
 use Guywithnose\ReleaseNotes\Type\TypeManager;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Tests\Type;
 
 use Guywithnose\ReleaseNotes\Type\Type;

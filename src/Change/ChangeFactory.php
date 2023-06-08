@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Change;
 
 use Guywithnose\ReleaseNotes\Type\TypeManager;
@@ -14,15 +15,15 @@ class ChangeFactory
     /**
      * Initialize the change factory with the type selector.
      *
-     * The type selector is a function that is passed the change and must return a valid type (@see \Guywithnose\ReleaseNotes\Change::types) or
-     * null to use the default type.
+     * The type selector is a function that is passed the change and must return a valid type
+     * (@see \Guywithnose\ReleaseNotes\Change::types) or null to use the default type.
      *
      * @param callable $typeSelector The type selector function.
      */
     public function __construct(TypeManager $typeManager, callable $typeSelector = null)
     {
         $this->typeManager = $typeManager;
-        $this->_typeSelector = $typeSelector ?: function(Change $change) {
+        $this->_typeSelector = $typeSelector ?: function (Change $change) {
             return $change->getType();
         };
     }
@@ -38,11 +39,14 @@ class ChangeFactory
         $typeSelector = $this->_typeSelector;
         $change = null;
 
+        $mergePRRegexp = '/Merge pull request #([0-9]*)[^\n]*\n[^\n]*\n(.*)/s';
+        $mergeBranchRegExp = '/Merge branch \'([^\']*)\'[^\n]*\n[^\n]*\n(.*)/s';
+
         if (count($commit['parents']) > 1) {
             $change = null;
-            if (preg_match('/Merge pull request #([0-9]*)[^\n]*\n[^\n]*\n(.*)/s', $commit['commit']['message'], $matches)) {
+            if (preg_match($mergePRRegexp, $commit['commit']['message'], $matches)) {
                 $change = new PullRequest((int)$matches[1], $matches[2], $this->typeManager->getDefaultType());
-            } elseif (preg_match('/Merge branch \'([^\']*)\'[^\n]*\n[^\n]*\n(.*)/s', $commit['commit']['message'], $matches)) {
+            } elseif (preg_match($mergeBranchRegExp, $commit['commit']['message'], $matches)) {
                 $change = new Merge($matches[1], $matches[2], $this->typeManager->getDefaultType());
             } else {
                 $change = new Change($commit['commit']['message'], $this->typeManager->getDefaultType());

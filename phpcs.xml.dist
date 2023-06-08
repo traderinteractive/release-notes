@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="PHP_CodeSniffer">
+    <config name="ignore_warnings_on_exit" value="true"/>
+    <file>tests</file>
+    <file>src</file>
+    <file>build.php</file>
+    <arg name="report" value="full"/>
+    <arg name="colors" />
+    <arg value="p" />
+    <rule ref="PSR12">
+        <exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
+        <exclude name="PSR2.Classes.PropertyDeclaration.Underscore" />
+    </rule>
+</ruleset>

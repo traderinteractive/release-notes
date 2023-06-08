@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Change;
 
 use Guywithnose\ReleaseNotes\Type\Type;
@@ -27,7 +28,7 @@ class PullRequest extends Change
      *
      * @return string A short representation of the pull request.
      */
-    public function displayShort() : string
+    public function displayShort(): string
     {
         return parent::displayShort() . "&nbsp;<sup>[PR&nbsp;#{$this->_number}]</sup>";
     }
@@ -37,7 +38,7 @@ class PullRequest extends Change
      *
      * @return string A long representation of the pull request.
      */
-    public function displayFull() : string
+    public function displayFull(): string
     {
         return "### Pull Request #{$this->_number}\n{$this->_message}";
     }

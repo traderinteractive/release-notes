@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Prompt;
 
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -28,8 +29,12 @@ class PromptFactory
      * @param \Symfony\Component\Console\Helper\QuestionHelper $questionHelper The question helper.
      * @param \Symfony\Component\Console\Helper\FormatterHelper $formatter The formatter helper.
      */
-    public function __construct(InputInterface $input, OutputInterface $output, QuestionHelper $questionHelper, FormatterHelper $formatter)
-    {
+    public function __construct(
+        InputInterface $input,
+        OutputInterface $output,
+        QuestionHelper $questionHelper,
+        FormatterHelper $formatter
+    ) {
         $this->_input = $input;
         $this->_output = $output;
         $this->_questionHelper = $questionHelper;

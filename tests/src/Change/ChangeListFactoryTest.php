@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Tests\Change;
 
 use Guywithnose\ReleaseNotes\Change\Change;
@@ -15,7 +16,10 @@ class ChangeListFactoryTest extends TestCase
         $typeManager = TypeManager::getSemanticTypeManager();
         $changeFactory = new ChangeFactory($typeManager);
         $commit = json_decode(file_get_contents('tests/data/commit.json'), true);
-        $expectedChangeList = new ChangeList($typeManager, [new Change($commit['commit']['message'], $typeManager->getDefaultType())]);
+        $expectedChangeList = new ChangeList(
+            $typeManager,
+            [new Change($commit['commit']['message'], $typeManager->getDefaultType())]
+        );
         $changeListFactory = new ChangeListFactory($changeFactory, $typeManager);
         $actualChangeList = $changeListFactory->createFromCommits([$commit]);
         $this->assertEquals($expectedChangeList, $actualChangeList);

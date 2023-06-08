@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes;
 
 use Symfony\Component\Console\Application as SymfonyApplication;

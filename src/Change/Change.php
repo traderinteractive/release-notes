@@ -1,11 +1,12 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Change;
 
 use Guywithnose\ReleaseNotes\Type\Type;
 
 class Change implements ChangeInterface
 {
-    const TYPE_IGNORE = 'x';
+    public const TYPE_IGNORE = 'x';
 
     /** @type Type The type of the change. */
     protected $_type;
@@ -45,7 +46,7 @@ class Change implements ChangeInterface
      *
      * @return Type The type code.
      */
-    public function getType() : Type
+    public function getType(): Type
     {
         return $this->_type;
     }
@@ -67,7 +68,7 @@ class Change implements ChangeInterface
      *
      * @return string The link.
      */
-    public function getLink() : string
+    public function getLink(): string
     {
         return $this->_link;
     }
@@ -87,7 +88,7 @@ class Change implements ChangeInterface
      *
      * @return string A short representation of the change.
      */
-    public function displayShort() : string
+    public function displayShort(): string
     {
         if (!empty($this->getLink())) {
             return '* [' . strtok($this->_message, "\n") . "]({$this->getLink()})";
@@ -101,7 +102,7 @@ class Change implements ChangeInterface
      *
      * @return string A long representation of the change.
      */
-    public function displayFull() : string
+    public function displayFull(): string
     {
         return $this->_message;
     }

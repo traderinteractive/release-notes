@@ -1,4 +1,5 @@
 <?php
+
 namespace Guywithnose\ReleaseNotes\Type;
 
 use JiraRestApi\Issue\IssueService;
@@ -31,8 +32,12 @@ final class JiraTypeSelector
      * @param string       $pattern      Longer description of type.
      * @param \Symfony\Component\Console\Output\OutputInterface $output The command output.
      */
-    public function __construct(TypeManager $typeManager, IssueService $issueService, string $pattern, OutputInterface $output)
-    {
+    public function __construct(
+        TypeManager $typeManager,
+        IssueService $issueService,
+        string $pattern,
+        OutputInterface $output
+    ) {
         $this->_typeManager = $typeManager;
         $this->_issueService = $issueService;
         $this->_pattern = $pattern;
@@ -44,7 +49,7 @@ final class JiraTypeSelector
      *
      * @return Type type of commit or default if unable to determine
      */
-    public function getChangeType(ChangeInterface $change) : Type
+    public function getChangeType(ChangeInterface $change): Type
     {
         $text = $change->displayShort();
         $matches = [];
