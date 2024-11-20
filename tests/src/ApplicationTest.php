@@ -28,8 +28,9 @@ class ApplicationTest extends TestCase
         try {
             $this->getCommandTester(
                 [
-                    'repo-owner' => 'guyithnose',
+                    'repo-owner' => 'guywithnose',
                     'repo-name' => 'release-notes',
+                    '--access-token' => 'fake',
                 ],
                 'foo\\n'
             );
