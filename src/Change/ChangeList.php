@@ -49,7 +49,7 @@ class ChangeList
                 $largestChange = $changeIndex;
             }
 
-            if (Type::cmp($changeIndex, $largestChange) < 0) {
+            if (Type::cmp($changeIndex, $largestChange) > 0) {
                 $largestChange = $change->getType();
             }
         }
