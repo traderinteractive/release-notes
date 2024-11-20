@@ -151,19 +151,28 @@ final class TypeManager
     {
         $manager = new TypeManager();
 
-        $manager->add(new Type('Epic', 'e', 'Epic Issue', 100));
-        $manager->add(new Type('Spike', 'S', 'Spike for Research', 80));
-        $manager->add(new Type('Story', 's', 'Story Enhancement', 60));
-        $manager->add(new Type('Task', 'k', 'Task', 50));
-        $manager->add(new Type('Bug', 'b', 'Bug fix', 40));
-        $manager->add(new Type('Maintenance', 'm', 'Maintenance change', 20));
-        $manager->add(new Type('Sub-task', 't', 'Sub-tasks', 10));
+        $manager->add(new Type('Backward Compatible Breakers', 'B', 'Backward Compatibility Breakers', 100));
+        $manager->add(new Type('Epic', 'e', 'Epic Issues', 90));
+        $manager->add(new Type('Idea', 'i', 'Ideas', 85));
+        $manager->add(new Type('Initiative', 'n', 'Initiatives', 80));
+        $manager->add(new Type('New Feature', 'f', 'New Features', 80));
+        $manager->add(new Type('Rock', 'r', 'Rocks', 80));
+        $manager->add(new Type('Service Request', 'q', 'Service Requests', 80));
+        $manager->add(new Type('Story', 's', 'Story Enhancements', 70));
+        $manager->add(new Type('Task', 'k', 'Tasks', 60));
+        $manager->add(new Type('Sub-task', 't', 'Sub-tasks', 56));
+        $manager->add(new Type('Subtask', 'T', 'Subtasks', 55));
+        $manager->add(new Type('Bug', 'b', 'Bug fixes', 40));
+        $manager->add(new Type('Defect', 'd', 'Defects', 30));
+        $manager->add(new Type('Maintenance', 'm', 'Maintenance changes', 25));
+        $manager->add(new Type('Monitoring', 'o', 'Monitoring', 20));
+        $manager->add(new Type('Spike', 'S', 'Spike for Research', 10));
         $manager->add(new Type('Ignore', 'x', 'Remove Commit from Release Notes', 0));
         $manager->add(new Type('Unknown', 'u', 'Unknown type/No type selected', -10));
 
-        $manager->setBCType($manager->getTypeByCode('e'));
-        $manager->setMajorType($manager->getTypeByCode('s'));
-        $manager->setMinorType($manager->getTypeByCode('b'));
+        $manager->setBCType($manager->getTypeByCode('B'));
+        $manager->setMajorType($manager->getTypeByCode('T'));
+        $manager->setMinorType($manager->getTypeByCode('S'));
         $manager->setDefaultType($manager->getTypeByCode('u'));
 
         return $manager;

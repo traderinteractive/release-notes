@@ -59,6 +59,14 @@ final class JiraTypeSelector
                     $issue = $this->_issueService->get($key);
                     $issuetype = $issue->fields->issuetype->name;
                     $type = $this->_typeManager->getTypeByName($issuetype);
+                    if ($type === null && !empty($issuetype)) {
+                        $newCode = $this->getUniqueCode();
+                        if (!empty($newCode)) {
+                            $type = new Type($issuetype, $newCode, $issuetype, 1);
+                            $this->_typeManager->add($type);
+                        }
+                    }
+
                     if ($type !== null) {
                         $host = $this->_issueService->getConfiguration()->getJiraHost();
                         $change->setLink("{$host}/browse/{$key}");
@@ -71,5 +79,24 @@ final class JiraTypeSelector
         }
 
         return $this->_typeManager->getDefaultType();
+    }
+
+    /**
+     * Gets a unique code used for dynamically added types.
+     *
+     * @return string A unique unused code or an empty value if none are available.
+     */
+    private function getUniqueCode(): string
+    {
+        $possibleCodes = str_split('123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
+        $existingCodes = array_keys($this->_typeManager->getTypesForCommand());
+
+        $availableCodes = array_values(array_diff($possibleCodes, $existingCodes));
+
+        if (!empty($availableCodes)) {
+            return $availableCodes[0];
+        }
+
+        return '';
     }
 }
